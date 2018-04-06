@@ -8,7 +8,7 @@ pipeline:
     image: fpfis/drone-plugin-asda
     target: dump.sql
     website: joinup/dumps
-    secrets: [ asda_url_aws ]
+    secrets: [ asda_url ]
     when:
       event: push
       branch: [ master, release/* ]
