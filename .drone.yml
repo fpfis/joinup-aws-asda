@@ -7,9 +7,9 @@ pipeline:
   get-sanitzed-dump:
     image: fpfis/drone-plugin-asda
     target: dump.sql
-    website: joinup/dumps/
+    website: joinup/dumps
     secrets: [ asda_url ]
     when:
       event: push
       branch: [ master, release/* ]
-   
+  
