@@ -11,5 +11,5 @@ pipeline:
     secrets: [ asda_url_aws ]
     when:
       event: push
-      branch: [ master, release/*, production, acceptance, hotfix/*, test/*, demo/* ]
+      branch: [ master, release/* ]
     
