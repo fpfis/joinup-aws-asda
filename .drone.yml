@@ -1,0 +1,16 @@
+workspace:
+  base: /test
+  path: ssk
+
+pipeline:
+
+  get-sanitzed-dump:
+    image: fpfis/drone-plugin-asda
+    target: dump.sql
+    website: joinup
+    secrets: [ asda_url_aws ]
+    when:
+      event: push
+      branch: [ master, release/*, production, acceptance, hotfix/*, test/*, demo/* ]
+      
+      
