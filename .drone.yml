@@ -9,6 +9,8 @@ pipeline:
     target: dump.sql
     website: joinup/dumps
     secrets: [ asda_url ]
+    volumes: 
+          - /tmp:/cache
     when:
       event: push
       branch: [ master, release/* ]
