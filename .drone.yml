@@ -12,5 +12,4 @@ pipeline:
     when:
       event: push
       branch: [ master, release/*, production, acceptance, hotfix/*, test/*, demo/* ]
-      
-      
+    
