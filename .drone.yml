@@ -14,17 +14,14 @@ pipeline:
       branch: [ master, release/* ]
       
   download-build:
-    image: appleboy/drone-sftp-cache
-    server: 10.0.110.23
-    port: 22
+    image: appleboy/drone-scp
+    host: 10.0.110.23
     username: web_asda
-    key: [ asda_key ]
-    path: /web/content/asda
-    rebuild: true
-    mount:
-      - build
+    secrets: [ ssh_key ]
+    port: 22
+    target: /web/content/asda/web/joinup/builds/
+    source: release.tar.gz
     when:
       event: push
       branch: [ master, release/* ]
-      
       
