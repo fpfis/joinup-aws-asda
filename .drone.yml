@@ -14,7 +14,7 @@ pipeline:
       branch: [ master, release/* ]
 
   download-build:
-    image: fpfis/fpfis-base
+    image: fpfis/php71-build
     commands:
       - wget 'https://github.com/ec-europa/platform-deploy/archive/2.5.0.tar.gz' -O release.tar.gz
       
