@@ -22,7 +22,7 @@ pipeline:
     image: drillster/drone-rsync
     hosts: 10.0.110.23
     user: web_asda
-	  secrets: [ key ]
+    secrets: [ key ]
     source: release.tar.gz
     target: /web/content/asda/web/joinup/builds/
     when:
