@@ -23,7 +23,7 @@ pipeline:
     server: 10.0.110.23
     port: 22
     username: web_asda
-    key: [ asda_key ]
+    key: [ ssh_key ]
     path: /web/content/asda
     when:
       event: push
