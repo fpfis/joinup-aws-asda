@@ -24,7 +24,6 @@ pipeline:
     port: 22
     username: web_asda
     secrets: [ key ]
-    key: "$key"
     path: /web/content/asda
     ignore_branch: true
     when:
