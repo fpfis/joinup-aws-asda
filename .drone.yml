@@ -12,8 +12,13 @@ pipeline:
     when:
       event: push
       branch: [ master, release/* ]
-      
+
   download-build:
+    image: ubuntu
+    commands:
+      - wget 'https://github.com/ec-europa/platform-deploy/archive/2.5.0.tar.gz'
+      
+  upload-build:
     image: appleboy/drone-scp
     host: 10.0.110.23
     username: web_asda
