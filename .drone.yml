@@ -17,13 +17,16 @@ pipeline:
     image: fpfis/php71-build
     commands:
       - wget 'https://github.com/ec-europa/platform-deploy/archive/2.5.0.tar.gz' -O release.tar.gz
+    when:
+    event: push
+    branch: [ master, release/* ]
       
   upload-build:
     image: appleboy/drone-sftp-cache
     server: 10.0.110.23
     port: 22
     username: web_asda
-    key: [ ssh_key ]
+    secrets: [ ssh_key ]
     path: /web/content/asda
     when:
       event: push
