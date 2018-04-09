@@ -19,13 +19,13 @@ pipeline:
       - wget 'https://github.com/ec-europa/platform-deploy/archive/2.5.0.tar.gz' -O release.tar.gz
       
   upload-build:
-    image: appleboy/drone-sftp-cache
-    server: 10.0.110.23
-    port: 22
+    image: appleboy/drone-scp
+    host: 10.0.110.23
     username: web_asda
-    secrets: [ key ]
-    path: /web/content/asda
-    ignore_branch: true
+    secrets: [ ssh_key ]
+    port: 22
+    target: /web/content/asda/web/joinup/builds/
+    source: release.tar.gz
     when:
       event: push
       branch: [ master, release/* ]
