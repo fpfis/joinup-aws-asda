@@ -14,15 +14,14 @@ pipeline:
       branch: [ master, release/* ]
 
   upload-build:
-    image: appleboy/drone-scp
-    host: 10.0.110.23
-    port: 22
-    username: web_asda
+    image: drillster/drone-rsync 
+    hosts: [ 10.0.110.23 ]
+    user: web_asda
     secrets: 
       - source: key
-        target: ssh_key
+        target: plugin_key
     source: dump.sql
-    target: /web/content/asda/web/joinup/builds
+    target: /web/content/asda/web/joinup/builds/dump-${DRONE_COMMIT_SHA}.sql
     when:
       event: push
       branch: [ master, release/* ]
