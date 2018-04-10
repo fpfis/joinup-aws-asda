@@ -13,11 +13,6 @@ pipeline:
       event: push
       branch: [ master, release/* ]
 
-  download-build:
-    image: fpfis/php71-build
-    commands:
-      - wget 'https://github.com/ec-europa/platform-deploy/archive/2.5.0.tar.gz' -O release.tar.gz
-      
   upload-build:
     image: appleboy/drone-scp
     host: 10.0.110.23
@@ -26,7 +21,7 @@ pipeline:
     secrets: 
       - source: key
         target: ssh_key
-    source: release.tar.gz
+    source: dump.sql
     target: /web/content/asda/web/joinup/builds
     when:
       event: push
