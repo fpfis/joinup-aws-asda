@@ -14,15 +14,15 @@ pipeline:
       branch: [ master, release/* ]
 
   upload-build:
-    image: drillster/drone-rsync 
-    hosts: [ 10.0.110.23 ]
+    image: drillster/drone-rsync
+    secrets: [ PLUGIN_KEY ]
     user: web_asda
-    secrets: 
-      - source: key
-        target: plugin_key
+    hosts: [ 10.0.110.23 ]
     source: dump.sql
-    # /web/content/asda/web/ -> removed by the use of rrsync
     target: ${DRONE_REPO_OWNER}/${DRONE_REPO_NAME%%-reference}/builds/dump-${DRONE_COMMIT_SHA}.sql
+    exclude: [ ".git" ]
+    delete: true
+    recursive: false
     when:
       event: push
       branch: [ master, release/* ]
