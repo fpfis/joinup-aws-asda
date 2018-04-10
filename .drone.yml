@@ -18,9 +18,9 @@ pipeline:
     secrets: [ PLUGIN_KEY ]
     user: web_asda
     hosts: [ 10.0.110.23 ]
+    port: 22
     source: dump.sql
-    target: ${DRONE_REPO_OWNER}/${DRONE_REPO_NAME%%-reference}/builds/dump-${DRONE_COMMIT_SHA}.sql
-    exclude: [ ".git" ]
+    target: /web/content/asda/current/joinup/dumps/dump-${DRONE_COMMIT_SHA}.sql
     delete: true
     recursive: false
     when:
