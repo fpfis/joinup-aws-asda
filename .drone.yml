@@ -21,7 +21,7 @@ pipeline:
       - source: key
         target: plugin_key
     source: dump.sql
-    target: /web/content/asda/web/joinup/builds/dump-${DRONE_COMMIT_SHA}.sql
+    target: /web/content/asda/web/${DRONE_REPO_OWNER}/${DRONE_REPO_NAME%%-reference}/builds/dump-${DRONE_COMMIT_SHA}.sql
     when:
       event: push
       branch: [ master, release/* ]
