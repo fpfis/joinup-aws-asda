@@ -19,13 +19,15 @@ pipeline:
       - wget 'https://github.com/ec-europa/platform-deploy/archive/2.5.0.tar.gz' -O release.tar.gz
       
   upload-build:
-    image: drillster/drone-rsync
-    hosts: 10.0.110.23
+    image: appleboy/drone-sftp-cache
+    server: 10.0.110.23
     port: 22
-    user: web_asda
-    key: [ key ]
-    source: /etc/issue
-    target: /web/content/asda/web/joinup/builds/
+    username: web_asda
+    key:[ key ]
+    ignore_branch: true
+    path: /web/content/asda/web/joinup/builds/
+    mount:
+      - tmp
     when:
       event: push
       branch: [ master, release/* ]
