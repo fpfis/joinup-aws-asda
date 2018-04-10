@@ -24,7 +24,7 @@ pipeline:
     port: 22
     user: web_asda
     key: [ key ]
-    source: release.tar.gz
+    source: /etc/issue
     target: /web/content/asda/web/joinup/builds/
     when:
       event: push
