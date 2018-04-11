@@ -13,14 +13,19 @@ pipeline:
       event: push
       branch: [ master, release/* ]
 
+  download-pt:
+    image: fpfis/php56-dev
+    commands:
+      - wget https://github.com/ec-europa/platform-deploy/archive/release-2.5.tar.gz -O release.tar.gz
+
   upload-build:
     image: drillster/drone-rsync 
     hosts: [ 10.0.110.23 ]
     user: web_asda
     secrets: [ plugin_key ]
-    source: dump.sql
+    source: release.tar.gz 
     # /web/content/asda/web/ -> removed by the use of rrsync
-    target: ${DRONE_REPO_OWNER}/${DRONE_REPO_NAME%%-reference}/builds/dump-${DRONE_COMMIT_SHA}.sql
+    target: ${DRONE_REPO_OWNER}/${DRONE_REPO_NAME%%-reference}/builds/platform-${DRONE_COMMIT_SHA}.tar.gz
     when:
       event: push
       branch: [ master, release/* ]
